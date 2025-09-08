@@ -1,0 +1,125 @@
+import React, { useState } from 'react';
+
+const SimpleNavigation = () => {
+  // State - kon sa dropdown open hai
+  const [openMenu, setOpenMenu] = useState('');
+
+  // Function - menu open/close karta hai
+  const toggleMenu = (menuName) => {
+    if (openMenu === menuName) {
+      setOpenMenu(''); // Agar same menu hai to close kar do
+    } else {
+      setOpenMenu(menuName); // Naya menu open karo
+    }
+  };
+
+  return (
+    <div className="bg-gray-800 p-6">
+      <ul className='flex justify-center items-center gap-8'>
+        
+        {/* Products Menu */}
+        <li className='relative'>
+          <div 
+            className='text-white font-bold text-lg cursor-pointer flex items-center gap-2'
+            onClick={() => toggleMenu('products')}
+          >
+            Products 
+            {/* Simple Arrow - click par rotate hota hai */}
+            <div className={`transform transition-transform duration-300 ${openMenu === 'products' ? 'rotate-180' : 'rotate-0'}`}>
+              ▼
+            </div>
+          </div>
+          
+          {/* Dropdown Box */}
+          {openMenu === 'products' && (
+            <div className='absolute top-full left-0 mt-2 bg-white rounded shadow-lg w-48 z-10'>
+              <div className='py-2'>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Laptops</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Phones</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Tablets</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Accessories</div>
+              </div>
+            </div>
+          )}
+        </li>
+
+        {/* My Order Menu */}
+        <li className='relative'>
+          <div 
+            className='text-white font-bold text-lg cursor-pointer flex items-center gap-2'
+            onClick={() => toggleMenu('myOrder')}
+          >
+            My Order 
+            <div className={`transform transition-transform duration-300 ${openMenu === 'myOrder' ? 'rotate-180' : 'rotate-0'}`}>
+              ▼
+            </div>
+          </div>
+          
+          {openMenu === 'myOrder' && (
+            <div className='absolute top-full left-0 mt-2 bg-white rounded shadow-lg w-48 z-10'>
+              <div className='py-2'>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>View Orders</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Track Order</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Order History</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Returns</div>
+              </div>
+            </div>
+          )}
+        </li>
+
+        {/* Profile Menu */}
+        <li className='relative'>
+          <div 
+            className='text-white font-bold text-lg cursor-pointer flex items-center gap-2'
+            onClick={() => toggleMenu('profile')}
+          >
+            Arham Shafi 
+            <div className={`transform transition-transform duration-300 ${openMenu === 'profile' ? 'rotate-180' : 'rotate-0'}`}>
+              ▼
+            </div>
+          </div>
+          
+          {openMenu === 'profile' && (
+            <div className='absolute top-full left-0 mt-2 bg-white rounded shadow-lg w-48 z-10'>
+              <div className='py-2'>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>My Profile</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Settings</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Address Book</div>
+                <div className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>Logout</div>
+              </div>
+            </div>
+          )}
+        </li>
+
+        {/* Cart - No dropdown */}
+        <li className='relative'>
+          <div className='text-white font-bold text-lg cursor-pointer flex items-center gap-2'>
+            🛒 Cart 
+            <div className='bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs absolute -top-2 -right-2'>
+              0
+            </div>
+          </div>
+        </li>
+
+        {/* Wishlist - No dropdown */}
+        <li>
+          <div className='text-white font-bold text-lg cursor-pointer flex items-center gap-2'>
+            ❤️ Wishlist
+          </div>
+        </li>
+
+      </ul>
+
+      {/* Instructions for you */}
+      <div className="mt-8 p-4 bg-gray-700 rounded text-white text-sm">
+        <h3 className="font-bold mb-2">Kaise kaam karta hai:</h3>
+        <p>1. <strong>State:</strong> `openMenu` variable track karta hai kon sa menu open hai</p>
+        <p>2. <strong>Click:</strong> `toggleMenu()` function menu open/close karta hai</p>
+        <p>3. <strong>Arrow:</strong> Simple ▼ character use kiya, CSS se rotate hota hai</p>
+        <p>4. <strong>Dropdown:</strong> Conditional rendering se show/hide hota hai</p>
+      </div>
+    </div>
+  );
+};
+
+export default SimpleNavigation;

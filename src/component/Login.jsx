@@ -3,19 +3,21 @@ import { FaInstagram } from "react-icons/fa";
 import { TbLockPassword } from "react-icons/tb";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { App_context } from '../context';
 
 function Login() {
+    const { login_handler, login_form , Login } = useContext(App_context)
     const navigate = useNavigate()
     return (
         <div className='w-full min-h-screen flex justify-center items-center back'>
             <div className='w-[400px] h-[400px] rounded-xl bg-white relative select-none '>
                 <h1 className='text-center text-black font-bold text-2xl tracking-[2px] tb_sh uppercase mt-10 '>Login</h1>
-                <input type="email" className='w-[80%] h-[30px] border-b border-gray-500 text-black pr-7 font-bold  mx-auto  block mt-5 outline-none ' placeholder='E-mail' name='email' />
-                <input type="password" className='w-[80%] h-[30px] border-b border-gray-500 text-black pr-7 font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='Password' name='password' />
+                <input type="email" className='w-[80%] h-[30px] border-b border-gray-500 text-black pr-7 font-bold  mx-auto  block mt-5 outline-none ' placeholder='E-mail' name='email' value={login_form.email} onChange={login_handler} />
+                <input type="password" className='w-[80%] h-[30px] border-b border-gray-500 text-black pr-7 font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='Password' name='password' value={login_form.password} onChange={login_handler} />
                 <MdOutlineMailOutline className='absolute text-black/60 top-[25%] cursor-text right-10 text-xl' />
                 <TbLockPassword className='absolute text-black/60 top-[37%] cursor-text right-10 text-xl' />
                 <p className='capitalize text-black/70 text-right text-sm right-10 absolute top-[44%] hover:text-pink-700 cursor-pointer '>forgot Password</p>
-                <button className='block mt-10 w-[80%] h-[40px] back rounded-3xl mx-auto text-white font-bold cursor-pointer active:scale-98 transition-all duration-200 ease-out'  > Login</button>
+                <button className='block mt-10 w-[80%] h-[40px] back rounded-3xl mx-auto text-white font-bold cursor-pointer active:scale-98 transition-all duration-200 ease-out' onClick={Login} > Login</button>
                 <p className='text-center text-black/60  mt-3 '>or Sign Up using</p>
                 <div className='flex justify-center items-center gap-3 mx-auto w-max mt-4 '>
                     <button className='hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer '> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width={25} height={25} aria-label="Google">

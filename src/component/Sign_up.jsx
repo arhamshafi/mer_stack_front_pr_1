@@ -5,22 +5,24 @@ import { TbLockPassword } from "react-icons/tb";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { TiContacts } from "react-icons/ti";
 import { useNavigate } from 'react-router-dom';
+import { App_context } from '../context';
 
 function Sign_up() {
+    const { sign_up_handler, sign_up_form, Sign_up } = useContext(App_context)
     const navigate = useNavigate()
     return (
         <div className='w-full min-h-screen flex justify-center items-center back'>
             <div className='w-[400px] h-[500px] rounded-xl bg-white relative select-none '>
                 <h1 className='text-center text-black font-bold text-2xl tracking-[2px] tb_sh uppercase mt-10 '>Sign Up</h1>
-                <input type="text" className='w-[80%] pr-6  h-[30px] border-b border-gray-500 text-black font-bold  mx-auto  block mt-5 outline-none ' placeholder='Username' name='name' />
-                <input type="email" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='E-Mail ' name='email' />
+                <input type="text" className='w-[80%] pr-6  h-[30px] border-b border-gray-500 text-black font-bold  mx-auto  block mt-5 outline-none ' placeholder='Username' name='name' onChange={sign_up_handler} value={sign_up_form.name} />
+                <input type="email" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='E-Mail ' name='email' onChange={sign_up_handler} value={sign_up_form.email} />
                 <CiUser className='absolute top-[19.8%] cursor-text right-10 text-xl' />
                 <MdOutlineMailOutline className='absolute text-black/60 top-[29.6%] cursor-text right-10 text-xl' />
                 <TiContacts className='absolute text-black/60 top-[39.6%] cursor-text right-10 text-xl' />
                 <TbLockPassword className='absolute text-black/60 top-[49.6%] cursor-text right-10 text-xl' />
-                <input type="number" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 no_spinner ' placeholder='Phone Number ' name='number' />
-                <input type="password" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='Password ' name='password' />
-                <button className='block mt-10 w-[80%] h-[40px] back rounded-3xl mx-auto text-white font-bold cursor-pointer active:scale-98 transition-all duration-200 ease-out'>Sign Up </button>
+                <input type="number" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 no_spinner ' placeholder='Phone Number ' name='number' onChange={sign_up_handler} value={sign_up_form.number} />
+                <input type="password" className='w-[80%] pr-6 h-[30px] border-b border-gray-500 text-black font-bold  mx-auto block mt-5 outline-none placeholder:text-black/50 ' placeholder='Password ' name='password' onChange={sign_up_handler} value={sign_up_form.password} />
+                <button className='block mt-10 w-[80%] h-[40px] back rounded-3xl mx-auto text-white font-bold cursor-pointer active:scale-98 transition-all duration-200 ease-out' onClick={Sign_up}>Sign Up </button>
                 <p className='text-center text-black/60 mt-5 '>or login using</p>
                 <div className='flex justify-center items-center gap-3 mx-auto w-max mt-4'>
                     <button className='hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer '> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width={25} height={25} aria-label="Google">
@@ -34,7 +36,7 @@ function Sign_up() {
                     </svg></button>
                     <button className='hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer '><FaInstagram className='text-orange-600 w-[25px] h-[25px] ' /></button>
                 </div>
-                <p className='hover:text-pink-600 mt-3 text-black/60 hover:underline text-sm cursor-pointer text-center' onClick={()=>navigate("/")} >Already Have Account ? Login</p>
+                <p className='hover:text-pink-600 mt-3 text-black/60 hover:underline text-sm cursor-pointer text-center' onClick={() => navigate("/")} >Already Have Account ? Login</p>
             </div>
         </div>
     )
