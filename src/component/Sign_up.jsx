@@ -36,7 +36,7 @@ function Sign_up() {
                     </svg></button>
                     <button className='hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer '><FaInstagram className='text-orange-600 w-[25px] h-[25px] ' /></button>
                 </div>
-                <p className='hover:text-pink-600 mt-3 text-black/60 hover:underline text-sm cursor-pointer text-center' onClick={() => navigate("/")} >Already Have Account ? Login</p>
+                <p className='hover:text-pink-600 mt-3 text-black/60 hover:underline text-sm cursor-pointer text-center' onClick={() => navigate("/login")} >Already Have Account ? Login</p>
             </div>
         </div>
     )

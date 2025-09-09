@@ -5,6 +5,7 @@ import Sign_up from './component/Sign_up'
 import Dashboard from './component/Dashboard'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Eye_prd from './component/Eye_prd'
 
 function App() {
 
@@ -22,9 +23,10 @@ function App() {
         draggable
       />
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/sign_up' element={<Sign_up />} />
-        <Route path='/dash' element={<Dashboard />} />
+        <Route path='/eye' element={<Eye_prd />} />
       </Routes>
     </div>
   )

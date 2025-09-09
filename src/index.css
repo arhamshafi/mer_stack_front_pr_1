@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .back {
   background: linear-gradient(90deg, #38bdf8 0%, #f506a5 100%);
+}
+
+.side {
+  background: linear-gradient(180deg, #38bdf8 0%, #f506a5 100%);
 }
 
 .tb_sh {
@@ -14,6 +18,9 @@ body {
 
 .tw_sh {
   text-shadow: .1px .1px 2px white;
+}
+.tg_sh {
+  text-shadow: .1px .1px 1px green;
 }
 
 .tp_sh {
@@ -39,6 +46,15 @@ body {
 .db_shade {
   box-shadow: 0 0 4px #38bdf8, 0 0 4px #f506a5
 }
+.rx_sh{
+  box-shadow: .1px .1px 3px 0px rgba(255, 0, 0, 0.781);
+}
+.cx_sh{
+  box-shadow: .5px .5px 3px 0px rgba(0, 255, 255, 0.685);
+}
+.inner_sh{
+  box-shadow: inset 0.1px 0.1px 5px 0px grey ;
+}
 
 .no_spinner::-webkit-inner-spin-button,
 .no_spinner::-webkit-outer-spin-button {
@@ -51,7 +67,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 1px;
   box-shadow: 0 0 6px #38bdf8, 0 0 6px #f506a5
 }
 
