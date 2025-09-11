@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { FaClockRotateLeft } from "react-icons/fa6";
+import { App_context } from '../context';
 
 function Eye_prd() {
 
+  const { rating, setRating, comment, setComment, Add_Review ,cus_review , setCus_review } = useContext(App_context)
   const eye_prd = sessionStorage.getItem("eye_prd") ? JSON.parse(sessionStorage.getItem("eye_prd")) : null
   const navigate = useNavigate()
   const [img_idx, set_img_idx] = useState(0)
+  const [hover, setHover] = useState(0)
+
 
   return (
     <div className='w-full min-h-screen bg-black/10 px-5 py-[70px]  '>
@@ -48,6 +52,37 @@ function Eye_prd() {
             <div className='w-[45px] inner_sh h-[45px] rounded-lg flex justify-center items-center text-xl hover:text-lg transition-all duration-200 ease-in-out cursor-pointer  text-red-500 bg-black/10  '> <FaHeart /> </div>
           </div>
         </div>
+      </div>
+
+      {/* ///////////// Reviews  */}
+
+      <div className='w-full mt-10 px-10 ' >
+        <div className='flex items-center justify-between'>
+          <h1 className='text-3xl capitalize font-bold text-black tb_sh '>Customer reviews</h1>
+          <button className={`py-1 px-3 back rounded-lg text-xl db_shade cursor-pointer active:scale-95 transition-all duration-200 ease-out ${ !cus_review ? "visible" : "invisible" } font-bold text-white ts_sh `} onClick={()=> setTimeout(() => setCus_review(true), 200)} >Add Review</button>
+        </div>
+
+
+        <div className={` w-full h-max mt-10 p-5 bg-white rounded-2xl ${cus_review ? "block" : "hidden"} `}>
+          <h1 className='text-black tb_sh capitalize text-2xl font-bold '>write your review</h1>
+          <p className='text-black/80 text-xl mt-3 font-normal '>Rating : </p>
+          <div className="flex gap-1 mt-2 items-center ">
+            {[1, 2, 3, 4, 5].map((star, index) => (
+              <FaStar key={index} onClick={() => setRating(star)} onMouseEnter={() => setHover(star)} onMouseLeave={() => setHover(0)}
+                className={`cursor-pointer active:scale-90 transition-all duration-200 ease-out text-2xl ${star <= (hover || rating) ? "text-yellow-400" : "text-black/40"} `}
+              />
+            ))}
+            <p className='text-black/70 text-sm ml-3 font-bold ' >( {` ${rating} / 5 `} ) Stars  </p>
+          </div>
+          <p className='text-black/80 text-lg mt-5 capitalize font-normal '>write your review : </p>
+          <textarea className='w-full h-[150px] border-2 mt-2 resize-none rounded-2xl border-black/40  outline-none focus:border-cyan-500  text-md p-4 ' placeholder='Write Here Your Experince With This Product ... '
+            onChange={(e) => setComment(e.target.value)} value={comment} ></textarea>
+          <div className='flex items-center gap-3 mt-3'>
+            <button className='py-1 px-3 back rounded-lg text-xl db_shade cursor-pointer active:scale-95 transition-all duration-200 ease-out font-bold text-white ts_sh ' onClick={()=> Add_Review(eye_prd._id)}>Submit</button>
+            <button className='py-1 px-3 bg-black/10 rounded-lg gx_sh text-xl font-normal cursor-pointer active:scale-95 transition-all duration-200 ease-out text-black/80 tb_sh ' onClick={()=> setTimeout(()=> setCus_review(false),300) } >Cancel</button>
+          </div>
+        </div>
+
       </div>
 
     </div>

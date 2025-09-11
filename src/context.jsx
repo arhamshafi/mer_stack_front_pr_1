@@ -19,8 +19,11 @@ const App_Provider = ({ children }) => {
     const [brand, setBrand] = useState("")
     const [loader, setLoader] = useState(false)
     const [selectedBrands, setSelectedBrands] = useState([]);
-    console.log(selectedBrands);
-    // console.log(fil);
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState("")
+    const [cus_review, setCus_review] = useState(false)
+    const token = useState(sessionStorage.getItem("mernToken") ? JSON.parse(sessionStorage.getItem("mernToken")) : null)
+    // console.log(comment);
 
 
 
@@ -145,6 +148,28 @@ const App_Provider = ({ children }) => {
 
     //========================== Products Filteration ========================= //
 
+    const Add_Review = async (id) => {
+        console.log(id);
+        try {
+            if (rating <= 0 || comment == "") {
+                toast.info("rating or comment both required ")
+            }
+            const res = await axios.post(`http://localhost:6767/MERN/${id}/add_review`, { rating, comment }, { headers: { Authorization: `Bearer ${token} ` } })
+            console.log(res.data);
+            
+
+
+        }
+        catch (err) {
+            console.log(err);
+
+        }
+
+    }
+
+
+
+
     useEffect(() => {
         if (!products) return;
 
@@ -153,14 +178,11 @@ const App_Provider = ({ children }) => {
         if (selectedBrands.length > 0) {
             filtered = filtered.filter((p) => selectedBrands.includes(p.brand));
         }
-           
+
         set_filter_prd(filtered);
         setLoader(false)
 
     }, [products, selectedBrands])
-
-
-   
 
     useEffect(() => {
         get_products();
@@ -170,7 +192,8 @@ const App_Provider = ({ children }) => {
     return (
         <App_context.Provider value={{
             opn_menu, setopn_menu, menu_toogle, sign_up_handler, sign_up_form, login_handler, login_form, Login, Sign_up, logout,
-            Grid_Dis, setGrid_Dis, filter_prd, set_filter_prd, category, handleCategory, loader, brand, handleBrand, selectedBrands
+            Grid_Dis, setGrid_Dis, filter_prd, set_filter_prd, category, handleCategory, loader, brand, handleBrand, selectedBrands,
+            rating, setRating, comment, setComment, Add_Review, cus_review, setCus_review
         }}>
             {children}
         </App_context.Provider>
